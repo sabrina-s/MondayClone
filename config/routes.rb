@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   root 'tweets#main'
 
-  resources :user do
+  resources :users do
     resources :displaypic
     # , only: [:show, :new, :create] do
     #   member do
