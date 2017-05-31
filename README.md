@@ -1,25 +1,46 @@
-# README
+# Project Title
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is our clone of Twitter
 
-Things you may want to cover:
+## Getting Started
 
-* Ruby version
+Get the codebase from: https://github.com/sabrina-s/MondayClone.git
 
-* System dependencies
+### Prerequisites
 
-* Configuration
+What things you need get started
+- Git
+- Rails 5.1.1
+- Ruby 2.4.1
+- Heroku account
+- CircleCI
 
-* Database creation
+## Running the tests
 
-* Database initialization
+We are using [RSpec](http://rspec.info/) with [Shoulda Matchers gem] (https://github.com/thoughtbot/shoulda-matchers)  
 
-* How to run the test suite
+### And coding style tests
 
-* Services (job queues, cache servers, search engines, etc.)
+We value understandable, changeable and discoverable code over those that is short but cryptic.
 
-* Deployment instructions
+## Deployment
 
-* ...
-# MondayClone
+We're using Heroku for deployment.
+
+## Versioning
+
+For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
+
+## Authors
+
+**Sabrina**, **Mark**, **Evan**
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Acknowledgments
+
+* Hat tip to anyone whose code was used
+* Inspiration
+* etc
