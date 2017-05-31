@@ -1,7 +1,10 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6 col-offset-6">
-
+      <%= form_for [@tweet] do |t| %>
+        <%= t.label :body, "Tweet" %>
+        <%= t.text_area :body, size: "50x20" %>
+        <%= t.submit "Create" %>
       <% end %>
     </div>
   </div>
