@@ -1,7 +1,7 @@
 class TweetsController < ApplicationController
   def home
     @user = current_user
-    @tweet = @user.@tweet.build
+    @tweet = @user.tweets.build
   end
 
   def new
