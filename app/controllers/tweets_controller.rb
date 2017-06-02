@@ -1,5 +1,5 @@
 class TweetsController < ApplicationController
-  def main
+  def home
     @tweet = current_user.tweets.build
     @tweets = Tweet.all
   end
