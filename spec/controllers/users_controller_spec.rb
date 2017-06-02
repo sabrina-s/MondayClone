@@ -4,7 +4,7 @@ RSpec.describe UsersController, type: :controller do
 
   describe 'GET #show' do
     let(:user) { create(:user) }
-    let(:tweets) { create_list(:tweets, 10, user: user) }
+    let(:tweets) { create_list(:tweet, 10, user: user) }
 
     before { get :show }
 

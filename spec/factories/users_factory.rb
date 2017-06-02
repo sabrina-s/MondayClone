@@ -3,11 +3,10 @@ FactoryGirl.define do
     sequence(:username) { |n| "user#{n}" }
     sequence(:email) { |n| "email#{n}@example.com" }
     password "123123"
+    # trait :invalid do
+    #   username nil
+    #   email nil
+    #   password nil
+    # end
   end
-
-  # trait :invalid do
-  #   username nil
-  #   email nil
-  #   password nil
-  # end
 end
