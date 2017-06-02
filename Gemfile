@@ -34,6 +34,10 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 gem 'devise'
 gem 'faker', '~> 1.6', '>= 1.6.3'
+gem 'bootstrap-sass', '~> 3.3.6'
+gem 'simple_form'
+gem 'jquery-rails'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -52,6 +56,8 @@ end
 group :test do
   gem 'shoulda-matchers'
   gem 'rspec-rails'
+  gem 'rails-controller-testing'
+  gem 'factory_girl_rails'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
