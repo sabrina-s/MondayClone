@@ -1,10 +1,26 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-6 col-offset-6">
-      <%= form_for [@tweet] do |t| %>
-        <%= t.label :body, "Tweet" %>
-        <%= t.text_area :body, size: "50x20" %>
-        <%= t.submit "Create" %>
+    <div class="col-md-3">
+      Profile
+    </div>
+    <div class="col-md-9">
+      Compose tweet
+      <%= form_for @tweet do |t| %>
+      <%= t.label "Tweet" %>
+      <%= t.text_area :body, size: "50x20" %>
+      <%= t.submit "Create" %>
+<% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <% @tweets.each do |tweet| %>
+      <p>
+        <%= tweet.body %> by <%= link_to tweet.user.username, user_path(tweet.user) %> 
+        <% if current_user == tweet.user %>
+          <%= link_to "Delete", tweet_path(tweet), method: :delete %>
+        <% end %>
+      </p>
       <% end %>
     </div>
   </div>
