@@ -1,2 +1,42 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+.background {
+    background-image: url(Picture1.jpg);
+    
+}
+.wrapper {
+	margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+.form-signin {
+  //max-width: 380px;
+  //padding: 15px 35px 45px;
+  margin: 0 auto;
+  background-color: #fff;
+  border: 1px solid rgba(0,0,0,0.1);
+  display: block;
+}
+
+  .form-signin-heading,
+	.checkbox {
+	  margin-bottom: 30px;
+	}
+
+
+	.form-control {
+	  position: relative;
+	  font-size: 16px;
+	  height: auto;
+	  padding: 10px;
+		@include box-sizing(border-box);
+    max-width: 380px;
+
+
+		&:focus {
+		  z-index: 2;
+		}
+	}
+  .btn {
+    max-width: 380px !important;
+  }
