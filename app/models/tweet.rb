@@ -1,5 +1,6 @@
 class Tweet < ApplicationRecord
   belongs_to :user
 
-  validates_presence_of :body, :user_id
+  validates :body, :user_id, presence: true
+  validates :body, length: {maximum: 140}
 end
