@@ -1,6 +1,6 @@
 class TweetsController < ApplicationController
   def home
-    #@tweet = current_user.tweets.build
+    @tweet = current_user.tweets.build
     @tweets = Tweet.all
   end
 
