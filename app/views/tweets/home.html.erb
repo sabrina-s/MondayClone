@@ -15,7 +15,7 @@
       <div class="col-md-12">
         <% @tweets.each do |tweet| %>
         <p>
-          <%= tweet.body %> by <%= link_to tweet.user.username, user_path(tweet.user) %> 
+          <%= tweet.body %> <%= link_to tweet.created_at.strftime("%c"), tweet_path(tweet) %> by <%= link_to tweet.user.username, user_path(tweet.user) %>
           <% if current_user == tweet.user %>
             <%= link_to "Delete", tweet_path(tweet), method: :delete %>
           <% end %>
