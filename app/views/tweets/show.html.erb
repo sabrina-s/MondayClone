@@ -1,1 +1,4 @@
-<%= @tweet.body %>
+<h3><%= @tweet.body %></h3>
+<%= @tweet_replies.each do |reply| %>
+  Body<%= reply.body%>
+  <% end %>
