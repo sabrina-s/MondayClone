@@ -1,26 +1,48 @@
 <div class="container">
+
   <div class="row">
+
+    <!-- User profile section, need to show follwers and following count -->
     <div class="col-md-3">
-      Profile
+      <div class="h2">Profile</div>
     </div>
-    <div class="col-md-9">
-      Compose tweet
+
+    <!-- Compose tweet textbox -->
+    <div class="col-md-6">
       <%= form_for @tweet do |t| %>
-      <%= t.label "Tweet" %>
-      <%= t.text_area :body, size: "50x20" %>
-      <%= t.submit "Create" %>
+        <div class="form-group">
+          <%= t.label "Compose Tweet", class: "h3" %>
+          <%= t.text_area :body, class: "form-control", placeholder: "Type your tweet here..", style: "height:100px" %>
+        </div>
+        <%= t.submit "Create", class: "btn btn-success pull-right"%>
       <% end %>
     </div>
+
+  </div>
+
+<br>
+    <!--Showing list of tweets  -->
     <div class="row">
-      <div class="col-md-12">
-        <% @tweets.each do |tweet| %>
-        <p>
-          <%= tweet.body %> <%= link_to tweet.created_at.strftime("%c"), tweet_path(tweet) %> by <%= link_to tweet.user.username, user_path(tweet.user) %>
-          <% if current_user == tweet.user %>
-            <%= link_to "Delete", tweet_path(tweet), method: :delete %>
+      <div class="col-md-6 col-md-offset-3">
+          <% @tweets.each do |tweet| %>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                  <%= link_to "@"+tweet.user.username, user_path(tweet.user), class: "panel-title" %>
+                </div>
+                <div class="panel-body">
+                    <%= tweet.body %>
+                </div>
+                <div class="panel-footer">
+                  <% if current_user == tweet.user %>
+                    <%= link_to "Delete Tweet", tweet_path(tweet), method: :delete%>
+                    <%= link_to tweet.created_at.strftime("%c"), tweet_path(tweet), class: "pull-right" %>
+                  <% else %>
+                    <%= link_to tweet.created_at.strftime("%c"), tweet_path(tweet), class: "pull-right" %><br>
+                  <% end %>
+                </div>
+            </div>
           <% end %>
-        </p>
-        <% end %>
       </div>
     </div>
-  </div>
+
+</div>
