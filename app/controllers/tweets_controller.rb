@@ -1,9 +1,9 @@
 class TweetsController < ApplicationController
   def home
-    if params[:reply_id].nil?
+    if params[:reply_to_tweet_id].nil?
       @tweet = current_user.tweets.build()
     else
-      @tweet = current_user.tweets.build(:reply_id => params[:reply_id])
+      @tweet = current_user.tweets.build(:reply_id => params[:reply_to_tweet_id], :body => "@" + User.find(params[:reply_to_user_id]).username + " ")
     end
     @tweets = Tweet.all
   end
@@ -15,7 +15,6 @@ class TweetsController < ApplicationController
 
   def create
     @tweet = current_user.tweets.build(tweet_params)
-    byebug
     if @tweet.save
       redirect_to root_path
     else
