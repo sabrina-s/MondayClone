@@ -30,7 +30,7 @@
                   <%= link_to "@"+tweet.user.username, user_path(tweet.user), class: "panel-title" %>
                 </div>
                 <div class="panel-body">
-                    <%= link_to tweet.body, tweet_path(tweet) %>
+                    <%= tweet.body %>
                 </div>
                 <div class="panel-footer">
                   <% if current_user == tweet.user %>

@@ -18,12 +18,15 @@ if User.count < user_count
 end
 
 # Tweets - Create Tweets
+Tweet.create(body: Faker::ChuckNorris.fact, user_id: User.first.id)
 tweet_count = 100
 if Tweet.count < tweet_count + 1
   (tweet_count - Tweet.count).times do
     body = Faker::ChuckNorris.fact
     user_offset = rand(User.count)
     user_id = User.offset(user_offset).limit(1).first.id
-    Tweet.create(body: body, user_id: user_id)
+    tweet_offset = rand(Tweet.count)
+    reply_id = Tweet.offset(tweet_offset).first.id
+    Tweet.create(body: body, user_id: user_id, reply_id: reply_id)
   end
 end
