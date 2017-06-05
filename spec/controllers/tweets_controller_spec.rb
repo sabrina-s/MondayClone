@@ -11,44 +11,42 @@ RSpec.describe TweetsController, type: :controller do
       get :home
     end
 
+    it { expect(assigns(:tweet)).to be_a_new_record }
     it { expect(assigns(:tweets)).to eq(tweets) }
   end
 
-  describe 'GET #show' do
-    let(:tweet) { create(:tweet) }
+  describe 'POST #create' do
+    let(:user) {create(:user)}
 
     before do
       sign_in user
-      get :show
-      params: {id: tweet} # error!!!!
+      post :create, params: {tweet: params}
     end
-
-    it { expect(assigns(:tweet)).to eq(tweet) }
-  end
-
-  describe 'GET #new' do
-    before { get :new }
-
-    it { expect(assigns(:tweet)).to be_a_new_record }
-  end
-
-  describe 'POST #create' do
-    let(:tweet) { create(:tweet) }
-
-    before { post :create, params: { tweet: params } }
 
     context 'when tweet#save passes' do
-      let(:params) { attributes_for(:tweet) }
-      it { expect(response).to redirect_to tweets_path }
+      let(:params) {attributes_for(:tweet)}
+      it {expect(response).to redirect_to root_path}
     end
+
     context 'when tweet#save fails' do
-      let(:params) { attributes_for(:tweet, :invalid) }
-      it { expect(response).to render_template(:new) }
+      let(:params) {attributes_for(:tweet, :invalid)}
+      it {expect(response).to render_template(:home)}
     end
+
   end
 
   describe 'DELETE #destroy' do
-    let(:user) { delete(:tweet) } # not done
+    let(:user) { create(:user) }
+    let(:tweet) { create(:tweet, user: user) }
+
+    before do
+      sign_in user
+      delete :destroy, params: {id: tweet}
+    end
+
+    it { expect(assigns(:tweet)).to eq(tweet) }
+    it { expect(Tweet.count).to eq(0) }
+    it { expect(response).to redirect_to root_path}
   end
 
 end
