@@ -1,6 +1,10 @@
 class TweetsController < ApplicationController
   def home
-    @tweet = current_user.tweets.build
+    if params[:reply_id].nil?
+      @tweet = current_user.tweets.build()
+    else
+      @tweet = current_user.tweets.build(:reply_id => params[:reply_id])
+    end
     @tweets = Tweet.all
   end
 
@@ -11,6 +15,7 @@ class TweetsController < ApplicationController
 
   def create
     @tweet = current_user.tweets.build(tweet_params)
+    byebug
     if @tweet.save
       redirect_to root_path
     else
@@ -26,6 +31,6 @@ class TweetsController < ApplicationController
 
   private
   def tweet_params
-    params.require(:tweet).permit(:body)
+    params.require(:tweet).permit(:body, :reply_id)
   end
 end
