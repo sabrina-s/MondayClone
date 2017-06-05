@@ -11,7 +11,7 @@ RSpec.describe User, type: :model do
   end
 
   describe 'validates unqiueness of' do
-    subject { User.new(email: 'email@example.com', password: '123456', username: 'myusername')}
+    let(:user) { create(:user) }
     it { should validate_uniqueness_of(:username).ignoring_case_sensitivity}
   end
 end
