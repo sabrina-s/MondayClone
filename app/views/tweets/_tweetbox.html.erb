@@ -2,6 +2,7 @@
   <div class="form-group">
     <%= t.label "Compose Tweet", class: "h3" %>
     <%= t.text_area :body, class: "form-control", placeholder: "Type your tweet here..", style: "height:100px" %>
+    <%= t.hidden_field :reply_id %>
   </div>
   <%= t.submit "Create", class: "btn btn-success pull-right"%>
 <% end %>
