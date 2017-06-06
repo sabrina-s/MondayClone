@@ -1,13 +1,19 @@
 class TweetsController < ApplicationController
+
+  # Find params before the following actions
+  before_action :set_tweet, only: [:show, :destroy]
+
+  # User needs to login before doing the following actions
+  before_action :authenticate_user!, only: [:home, :show, :create, :destroy]
+
   def home
     @tweet = current_user.tweets.build(new_tweet_params)
     @tweets = Tweet.all
   end
 
   def show
-    @tweet = Tweet.find(params[:id])
     @tweet_replies = Tweet.where(reply_id: @tweet.id)
-  end
+  end 
 
   def reply
     redirect_to root_path(reply_params)
@@ -23,7 +29,6 @@ class TweetsController < ApplicationController
   end
 
   def destroy
-    @tweet = Tweet.find(params[:id])
     @tweet.destroy
     redirect_to root_path
   end
@@ -40,4 +45,9 @@ class TweetsController < ApplicationController
   def reply_params
     {:reply_id => params[:reply_to_tweet_id], :body => "@" + User.find(params[:reply_to_user_id]).username + " "}
   end
+
+  def set_tweet
+    @tweet = Tweet.find(params[:id])
+  end
+
 end
