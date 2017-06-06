@@ -1,3 +1,6 @@
-$('.tweets').html("<%= j render partial: 'tweets' %>");
-debugger;
-$('#tweetbox')[0].reset();
+if("<%= tweet.id %>") {
+  $(".tweets").html("<%= j render partial: 'tweets' %>");
+  $('#tweetbox')[0].reset();
+} else {
+  $("tweetbox").html("<%= j render partial: 'tweetbox' %>")
+}
