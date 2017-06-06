@@ -17,10 +17,16 @@ class TweetsController < ApplicationController
 
   def create
     @tweet = current_user.tweets.build(tweet_params)
-    if @tweet.save
-      redirect_to root_path
-    else
-      render :home
+    @tweets = Tweet.all
+
+    respond_to do |format|
+      if @tweet.save
+        format.html { redirect_to root_path }
+        format.js
+      else
+        format.html { render :home }
+        format.js
+      end
     end
   end
 
@@ -35,7 +41,7 @@ class TweetsController < ApplicationController
   end
 
   def set_tweet
-    @tweet = Tweet.find(params[:id])    
+    @tweet = Tweet.find(params[:id])
   end
 
 end
