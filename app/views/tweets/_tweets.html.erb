@@ -9,9 +9,9 @@
       <div class="panel-footer">
         <% if current_user == tweet.user %>
           <%= link_to "Delete", tweet_path(tweet), method: :delete%>
-          <%= link_to tweet.created_at.strftime("%c"), tweet_path(tweet), class: "pull-right" %>
         <% else %>
           <%= link_to "Reply", reply_path(:reply_to_tweet_id => tweet.id, :reply_to_user_id => tweet.user.id)%>
+        <% else %>
           <%= link_to tweet.created_at.strftime("%c"), tweet_path(tweet), class: "pull-right" %><br>
         <% end %>
       </div>
