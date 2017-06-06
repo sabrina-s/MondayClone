@@ -8,15 +8,8 @@
     </div>
 
     <!-- Compose tweet textbox -->
-    <div class="col-md-6">
-      <%= form_for @tweet do |t| %>
-        <div class="form-group">
-          <%= t.label "Compose Tweet", class: "h3" %>
-          <%= t.text_area :body, class: "form-control", placeholder: "Type your tweet here..", style: "height:100px" %>
-          <%= t.hidden_field :reply_id %>
-        </div>
-        <%= t.submit "Create", class: "btn btn-success pull-right"%>
-      <% end %>
+    <div class="col-md-6 tweetbox">
+      <%= render partial: 'tweetbox' %>
     </div>
 
   </div>
@@ -24,26 +17,8 @@
 <br>
     <!--Showing list of tweets  -->
     <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-          <% @tweets.each do |tweet| %>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                  <%= link_to "@"+tweet.user.username, user_path(tweet.user), class: "panel-title" %>
-                </div>
-                <div class="panel-body">
-                    <%= tweet.body %>
-                </div>
-                <div class="panel-footer">
-                  <% if current_user == tweet.user %>
-                    <%= link_to "Delete", tweet_path(tweet), method: :delete%>
-                    <%= link_to tweet.created_at.strftime("%c"), tweet_path(tweet), class: "pull-right" %>
-                  <% else %>
-                    <%= link_to "Reply", reply_path(:reply_to_tweet_id => tweet.id, :reply_to_user_id => tweet.user.id)%>
-                    <%= link_to tweet.created_at.strftime("%c"), tweet_path(tweet), class: "pull-right" %><br>
-                  <% end %>
-                </div>
-            </div>
-          <% end %>
+      <div class="col-md-6 col-md-offset-3 tweets">
+          <%= render partial: 'tweets' %>
       </div>
     </div>
 
