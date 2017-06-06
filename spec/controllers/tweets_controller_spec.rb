@@ -15,6 +15,18 @@ RSpec.describe TweetsController, type: :controller do
     it { expect(assigns(:tweets)).to eq(tweets) }
   end
 
+  describe 'GET #reply' do
+    let(:user1) {create(:user)}
+    let(:user2) {create(:user)}
+
+    before do
+      sign_in user1
+      get :reply, params: {reply_to_tweet_id: 1, reply_to_user_id: user2}
+    end
+
+    it {expect(response).to redirect_to root_path(params: {reply_id: 1, body: "@" + user2.username + " "})}
+  end
+
   describe 'POST #create' do
     let(:user) {create(:user)}
 
