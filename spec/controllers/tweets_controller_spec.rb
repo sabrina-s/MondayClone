@@ -25,6 +25,7 @@ RSpec.describe TweetsController, type: :controller do
     end
 
     it {expect(response).to redirect_to root_path(params: {reply_id: 1, body: "@" + user2.username + " "})}
+  end
 
   describe 'GET #show' do
     let(:user) { create(:user) }
