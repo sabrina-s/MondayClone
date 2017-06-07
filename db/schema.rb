@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20170606083250) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "reply_id"
     t.index ["user_id"], name: "index_tweets_on_user_id"
   end
 

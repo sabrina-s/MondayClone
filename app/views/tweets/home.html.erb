@@ -1,56 +1,22 @@
 <div class="container">
 
   <div class="row">
-
     <!-- User profile section, need to show follwers and following count -->
     <div class="col-md-3">
       <div class="h2">Profile</div>
     </div>
 
     <!-- Compose tweet textbox -->
-    <div class="col-md-6">
-      <%= form_for @tweet do |t| %>
-        <div class="form-group">
-          <%= t.label "Compose Tweet", class: "h3" %>
-          <%= t.text_area :body, class: "form-control", placeholder: "Type your tweet here..", style: "height:100px" %>
-        </div>
-        <%= t.submit "Create", class: "btn btn-success pull-right"%>
-      <% end %>
+    <div class="col-md-6 tweetbox">
+      <%= render partial: 'tweetbox' %>
     </div>
-
   </div>
 
-<br>
     <!--Showing list of tweets  -->
-    <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-          <% @tweets.reverse_each do |tweet| %>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                  <%= link_to "@"+tweet.user.username, user_path(tweet.user), class: "panel-title" %>
-                </div>
-                <div class="panel-body">
-                  <%= tweet.body %>
-                  <% if Like.find_by(tweet_id: tweet.id, user_id: current_user) != nil %>
-                    <%# tweet.likes[0].likes_count %>
-                    <%= link_to like_path(id: tweet), method: :delete do %>
-                      <span class="glyphicon glyphicon-heart pull-right"></span>
-                    <% end %>
-                  <% else %>
-                    <%= link_to likes_path(id: tweet), method: :post do %>
-                      <span class="glyphicon glyphicon-heart-empty pull-right"></span>
-                    <% end %>
-                  <% end %>
-                </div>
-                <div class="panel-footer">
-                  <% if current_user == tweet.user %>
-                    <%= link_to "Delete Tweet", tweet_path(tweet), method: :delete %>
-                  <% end %>
-                  <%= link_to tweet.created_at.strftime("%c"), tweet_path(tweet), class: "pull-right" %><br>
-                </div>
-            </div>
-          <% end %>
-      </div>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3 tweets">
+        <%= render partial: 'tweets' %>
     </div>
+  </div>
 
 </div>
