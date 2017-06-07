@@ -24,7 +24,7 @@
     <!--Showing list of tweets  -->
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
-          <% @tweets.each do |tweet| %>
+          <% @tweets.reverse_each do |tweet| %>
             <div class="panel panel-default">
                 <div class="panel-heading">
                   <%= link_to "@"+tweet.user.username, user_path(tweet.user), class: "panel-title" %>
