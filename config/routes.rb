@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   end
 
   resources :tweets
+    resources :likes
   # , only: [:show] do
   #   resource :picture, only: [:show, :new, :create]
   # end
