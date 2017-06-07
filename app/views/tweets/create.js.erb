@@ -1,6 +1,7 @@
 if("<%= @tweet.id %>") {
   $(".tweets").html("<%= j render partial: 'tweets' %>");
-  $('#tweetbox')[0].reset();
+  $("#tweetbox").find("textarea").val("");
+  $("#tweetbox").find("#tweet_reply_id").val("");
 } else {
   $("tweetbox").html("<%= j render partial: 'tweetbox' %>")
 }
