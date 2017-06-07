@@ -11,9 +11,8 @@
           <%= link_to "Delete", tweet_path(tweet), method: :delete%>
         <% else %>
           <%= link_to "Reply", reply_path(:reply_to_tweet_id => tweet.id, :reply_to_user_id => tweet.user.id)%>
-        <% else %>
-          <%= link_to tweet.created_at.strftime("%c"), tweet_path(tweet), class: "pull-right" %><br>
         <% end %>
+        <%= link_to tweet.created_at.strftime("%c"), tweet_path(tweet), class: "pull-right" %><br>
       </div>
   </div>
 <% end %>
