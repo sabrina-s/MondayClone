@@ -1,4 +1,4 @@
-if("<%= tweet.id %>") {
+if("<%= @tweet.id %>") {
   $(".tweets").html("<%= j render partial: 'tweets' %>");
   $('#tweetbox')[0].reset();
 } else {
