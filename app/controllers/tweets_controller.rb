@@ -13,7 +13,7 @@ class TweetsController < ApplicationController
 
   def show
     @tweet_replies = Tweet.where(reply_id: @tweet.id)
-  end 
+  end
 
   def reply
     redirect_to root_path(reply_params)
@@ -25,10 +25,8 @@ class TweetsController < ApplicationController
 
     respond_to do |format|
       if @tweet.save
-        format.html { redirect_to root_path }
         format.js
       else
-        format.html { render :home }
         format.js
       end
     end
