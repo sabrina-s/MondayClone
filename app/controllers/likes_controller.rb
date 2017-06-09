@@ -3,8 +3,11 @@ class LikesController < ApplicationController
     @tweet = Tweet.find(params[:id])
     @like = current_user.likes.build(:tweet_id => tweet_id[:id])
     @like.save
-
-    redirect_to root_path
+    if params[:path] == "tweet"
+      redirect_to root_path
+    elsif params[:path] == "user"
+      redirect_to user_path(current_user.id)
+    end
   end
 
   def destroy
@@ -15,7 +18,7 @@ class LikesController < ApplicationController
       redirect_to root_path
     elsif params[:path] == "user"
       redirect_to user_path(current_user.id)
-    end
+    end  
   end
   
 
