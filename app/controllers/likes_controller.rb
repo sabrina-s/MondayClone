@@ -11,9 +11,13 @@ class LikesController < ApplicationController
     @tweet = Tweet.find(params[:id])
     @like = Like.find_by(tweet_id: @tweet.id, user_id: current_user.id)
     @like.delete
-
-    redirect_to root_path
+    if params[:path] == "tweet"
+      redirect_to root_path
+    elsif params[:path] == "user"
+      redirect_to user_path(current_user.id)
+    end
   end
+  
 
   private
 
