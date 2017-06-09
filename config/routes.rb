@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       get 'search'
     end
   end
+
   resources :likes
   # , only: [:show] do
   #   resource :picture, only: [:show, :new, :create]
