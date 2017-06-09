@@ -32,7 +32,6 @@
 
       <h3>Favourite tweets</h3>
       <% if @likes.count - @likes.where(user: current_user).count > 0 %>
-      <% byebug %>
         <% @likes.reverse_each do |like| %>      
           <% tweet = Tweet.find(like.tweet_id) %>
           <% if tweet.user_id != current_user.id %>
