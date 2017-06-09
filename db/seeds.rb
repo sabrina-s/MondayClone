@@ -7,7 +7,7 @@ User.find_or_create_by(username: "administrator") do |user|
 end
 
 # Users - Random users
-user_count = 10
+user_count = 60
 if User.count < user_count
   (user_count - User.count).times do
     username = Faker::Pokemon.name
