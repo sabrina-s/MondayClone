@@ -1,5 +1,14 @@
+
+<h3>Tweets created</h3>
 <ol>
   <% @tweets.each do |tweet| %>
-    <li><%= tweet.body %></li><br>
+    <li><%= tweet.body %></li>
+  <% end %>
+</ol>
+
+<h3>Favourtie tweets</h3>
+<ol>
+  <% @likes.each do |like| %>
+    <li><%= Tweet.find(like.tweet_id).body %>
   <% end %>
 </ol>
