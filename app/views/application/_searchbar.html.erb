@@ -1,0 +1,11 @@
+<div class="form-group search-form">
+  <form class="navbar-form navbar-right" role="search">
+    <%= form_tag search_tweets_path, method: :get do %>
+      <%= text_field_tag :search, params[:search], placeholder: "wtf", class: 'form-control' %>
+
+      <span class="input-group-btn">
+      <%= submit_tag "Search", :name => nil, class: 'btn btn-default' %>
+      </span>
+    <% end %>
+  </form>
+</div>

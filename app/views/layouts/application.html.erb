@@ -24,6 +24,7 @@
                 <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
                 <li class="navbar-text", style="text-align: right">Logged in as: <%= current_user.username %></li>
               <% end %>
+              <%= render partial: 'searchbar' %>
             </ul>
           </div>
           <!-- <p class="notice"><%= notice %></p>

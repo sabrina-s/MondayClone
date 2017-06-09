@@ -6,6 +6,11 @@ class TweetsController < ApplicationController
   # User needs to login before doing the following actions
   before_action :authenticate_user!, only: [:home, :show, :create, :destroy]
 
+  def search
+    @tweets = Tweet.search(params[:search])
+    redirect_to search_tweets_path(@tweets)
+  end
+
   def home
     @tweet = current_user.tweets.build(new_tweet_params)
     @tweets = Tweet.all
