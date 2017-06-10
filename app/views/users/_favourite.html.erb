@@ -2,7 +2,7 @@
 <% if@likes_count > 0 %>
   <% @likes.reverse_each do |like| %>      
     <% tweet = Tweet.find(like.tweet_id) %>
-    <% if tweet.user_id != current_user.id %>
+    <% if tweet.user_id != @user.id %>
       <%= render partial: "tweetrow", locals: {tweet: tweet} %>
     <% end %>
   <% end %>
