@@ -6,10 +6,6 @@ class Tweet < ApplicationRecord
   validates :body, length: {minimum: 1, maximum: 140}
 
   def self.search(search)
-    if search
-      find(:all, :conditions => ['body LIKE ?', "%#{search}%"])
-    else
-      find(:all)
-    end
+    where("body ILIKE ?", "%#{search}%")
   end
 end

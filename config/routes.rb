@@ -14,12 +14,7 @@ Rails.application.routes.draw do
     # end
   end
 
-  resources :tweets do
-    collection do
-      get 'search'
-    end
-  end
-
+  resources :tweets
   resources :likes
   # , only: [:show] do
   #   resource :picture, only: [:show, :new, :create]
