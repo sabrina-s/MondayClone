@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     @likes_count = @likes.count
     @likes.each do |like|
       tweet = Tweet.find(like.tweet_id)
-      if tweet.user_id == current_user.id
+      if tweet.user_id == @user.id
         @likes_count -= 1
       end
     end
