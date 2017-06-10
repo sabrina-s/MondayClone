@@ -7,11 +7,11 @@
         <%= tweet.body %>
         <% if Like.find_by(tweet_id: tweet.id, user_id: current_user) != nil %>
           <%# tweet.likes[0].likes_count %>
-          <%= link_to like_path(id: tweet), method: :delete do %>
+          <%= link_to like_path(id: tweet, path: "tweet"), method: :delete do %>
             <span class="glyphicon glyphicon-heart pull-right"></span>
           <% end %>
         <% else %>
-          <%= link_to likes_path(id: tweet), method: :post do %>
+          <%= link_to likes_path(id: tweet, path: "tweet"), method: :post do %>
             <span class="glyphicon glyphicon-heart-empty pull-right"></span>
           <% end %>
         <% end %>

@@ -1,0 +1,15 @@
+<h3>Favourite Tweets (<%= @likes_count %>)</h3>
+<% if@likes_count > 0 %>
+  <% @likes.reverse_each do |like| %>      
+    <% tweet = Tweet.find(like.tweet_id) %>
+    <% if tweet.user_id != current_user.id %>
+      <%= render partial: "tweetrow", locals: {tweet: tweet} %>
+    <% end %>
+  <% end %>
+<% else %>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      No favourite tweet
+    </div>  
+  </div>
+<% end %>
