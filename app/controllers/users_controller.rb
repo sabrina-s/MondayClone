@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  # User needs to login before doing the following actions
+  before_action :authenticate_user!
+  
   # def index
   #   @users = User.all
   # end
@@ -9,7 +12,7 @@ class UsersController < ApplicationController
     @tweets_count = @tweets.count
     @likes = @user.likes
     @likes_count = @likes.count
-    @likes.each do |like|       
+    @likes.each do |like|
       tweet = Tweet.find(like.tweet_id)
       if tweet.user_id == current_user.id
         @likes_count -= 1

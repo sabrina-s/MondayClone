@@ -1,7 +1,10 @@
 class LikesController < ApplicationController
+  # User needs to login before doing the following actions
+  before_action :authenticate_user!
+
   def create
     @tweet = Tweet.find(params[:id])
-    @like = current_user.likes.build(:tweet_id => tweet_id[:id])
+    @like = current_user.likes.build(tweet_id: @tweet.id)
     @like.save
     if params[:path] == "tweet"
       redirect_to root_path
@@ -21,7 +24,6 @@ class LikesController < ApplicationController
     end  
   end
   
-
   private
 
   def tweet_id
