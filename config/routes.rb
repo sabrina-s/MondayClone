@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
+  
   root 'tweets#home'
   get 'reply', to: 'tweets#reply'
 
@@ -16,10 +15,15 @@ Rails.application.routes.draw do
     #   end
     # end    
   end
-
+  
   resources :relationships, only: [:create, :destroy]
-  resources :tweets
   resources :likes, only: [:create, :destroy]
+
+  resources :tweets do
+    collection do
+      get 'search'
+    end
+  end
   # , only: [:show] do
   #   resource :picture, only: [:show, :new, :create]
   # end
