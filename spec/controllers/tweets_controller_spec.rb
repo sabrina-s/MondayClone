@@ -15,6 +15,31 @@ RSpec.describe TweetsController, type: :controller do
     it { expect(assigns(:tweets)).to eq(tweets) }
   end
 
+  describe 'GET #reply' do
+    let(:user1) {create(:user)}
+    let(:user2) {create(:user)}
+
+    before do
+      sign_in user1
+      get :reply, params: {reply_to_tweet_id: 1, reply_to_user_id: user2}
+    end
+
+    it {expect(response).to redirect_to root_path(params: {reply_id: 1, body: "@" + user2.username + " "})}
+  end
+
+  describe 'GET #search' do
+    let(:tweet) { create(:tweet, body: "hello") }
+    let(:params) { :tweet }
+
+    before do
+      get :search, params: { search: params }
+    end
+
+    context 'keyword found' do
+      it {expect(response).to have_http_status(:ok)}
+    end
+  end
+
   describe 'GET #show' do
     let(:user) { create(:user) }
 
@@ -40,7 +65,6 @@ RSpec.describe TweetsController, type: :controller do
 
       it { expect(assigns(:tweet_replies)).to match_array(tweet_replies) }
     end
-
   end
 
   describe 'GET #reply' do
@@ -72,7 +96,6 @@ RSpec.describe TweetsController, type: :controller do
       let(:params) {attributes_for(:tweet, :invalid)}
       it {expect(response).to render_template(:create)}
     end
-
   end
 
   describe 'DELETE #destroy' do
@@ -88,5 +111,4 @@ RSpec.describe TweetsController, type: :controller do
     it { expect(Tweet.count).to eq(0) }
     it { expect(response).to redirect_to root_path }
   end
-
 end
