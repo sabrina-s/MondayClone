@@ -1,9 +1,9 @@
-<h1>Search results:</h1>
-
-<% @tweets.each do |tweet| %>
-  <table>
-    <tr>
-      <td><%= tweet.body %></td>
-    </tr>
-  </table>
-<% end %>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3 tweets">
+      <h2>Search results for "<%= @search %>":</h2>
+      <%= render partial: 'tweets' %>
+      <% if @tweets.blank? %>
+        <h4>Sorry, we couldn't find any tweets containing "<%= params[:search] %>".</h4>
+      <% end %>
+  </div>
+</div>
