@@ -11,7 +11,7 @@
             <span class="glyphicon glyphicon-heart pull-right"></span>
           <% end %>
         <% else %>
-          <%= link_to likes_path(id: tweet), method: :post do %>
+          <%= link_to likes_path(id: tweet, path: "tweet"), method: :post do %>
             <span class="glyphicon glyphicon-heart-empty pull-right"></span>
           <% end %>
         <% end %>
