@@ -29,6 +29,7 @@ RSpec.describe TweetsController, type: :controller do
 
   describe 'GET #search' do
     let(:tweet) { create(:tweet, body: "hello") }
+    let(:params) { :tweet }
 
     before do
       get :search, params: { search: params }
@@ -36,10 +37,6 @@ RSpec.describe TweetsController, type: :controller do
 
     context 'keyword found' do
       it {expect(response).to have_http_status(:ok)}
-    end
-
-    context 'keyword not found' do
-
     end
   end
 
@@ -68,7 +65,6 @@ RSpec.describe TweetsController, type: :controller do
 
       it { expect(assigns(:tweet_replies)).to match_array(tweet_replies) }
     end
-
   end
 
   describe 'POST #create' do
@@ -88,7 +84,6 @@ RSpec.describe TweetsController, type: :controller do
       let(:params) {attributes_for(:tweet, :invalid)}
       it {expect(response).to render_template(:create)}
     end
-
   end
 
   describe 'DELETE #destroy' do
@@ -104,5 +99,4 @@ RSpec.describe TweetsController, type: :controller do
     it { expect(Tweet.count).to eq(0) }
     it { expect(response).to redirect_to root_path }
   end
-
 end
