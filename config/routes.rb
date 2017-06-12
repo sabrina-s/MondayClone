@@ -18,8 +18,12 @@ Rails.application.routes.draw do
   end
 
   resources :relationships, only: [:create, :destroy]
-  resources :tweets
   resources :likes, only: [:create, :destroy]
+  resources :tweets do
+    collection do
+      get 'search'
+    end
+  end
   # , only: [:show] do
   #   resource :picture, only: [:show, :new, :create]
   # end
