@@ -1,67 +1,30 @@
 <div class="container">
 
   <div class="row">
-
-    <div class="col-md-6 col-md-offset-3">
-      <h3>Tweets created</h3>
-      <% @tweets.reverse_each do |tweet| %>
-        <div class="panel panel-default">
-            <div class="panel-body">
-              <%= tweet.body %>
-              <% if Like.find_by(tweet_id: tweet.id, user_id: current_user) != nil %>
-                <%= link_to like_path(id: tweet), method: :delete do %>
-                  <span class="glyphicon glyphicon-heart pull-right"></span>
-                <% end %>
-              <% else %>
-                <%= link_to likes_path(id: tweet), method: :post do %>
-                  <span class="glyphicon glyphicon-heart-empty pull-right"></span>
-                <% end %>
-              <% end %>
-            </div>
-            <div class="panel-footer">
-              <% if current_user == tweet.user %>
-                <%= link_to "Delete", tweet_path(tweet), method: :delete %>
-              <% else %>
-                <%= link_to "Reply", reply_path(:reply_to_tweet_id => tweet.id, :reply_to_user_id => tweet.user.id)%>
-              <% end %>
-              <%= link_to tweet.created_at.strftime("%c"), tweet_path(tweet), class: "pull-right" %><br>
-            </div>
-        </div>
-      <% end %>
-      <hr>
-
-      <h3>Favourite tweets</h3>
-      <% @likes.reverse_each do |like| %>      
-        <% tweet = Tweet.find(like.tweet_id) %>
-        <% if tweet.user_id != current_user.id %>
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <%= link_to "@"+tweet.user.username, user_path(tweet.user), class: "panel-title" %>
-            </div>
-            <div class="panel-body">
-              <%= tweet.body %>
-              <% if Like.find_by(tweet_id: tweet.id, user_id: current_user) != nil %>
-                <%= link_to like_path(id: tweet), method: :delete do %>
-                  <span class="glyphicon glyphicon-heart pull-right"></span>
-                <% end %>
-              <% else %>
-                <%= link_to likes_path(id: tweet), method: :post do %>
-                  <span class="glyphicon glyphicon-heart-empty pull-right"></span>
-                <% end %>
-              <% end %>
-            </div>
-            <div class="panel-footer">
-              <% if current_user == tweet.user %>
-                <%= link_to "Delete", tweet_path(tweet), method: :delete %>
-              <% else %>
-                <%= link_to "Reply", reply_path(:reply_to_tweet_id => tweet.id, :reply_to_user_id => tweet.user.id)%>
-              <% end %>
-              <%= link_to tweet.created_at.strftime("%c"), tweet_path(tweet), class: "pull-right" %><br>
-            </div>
+    <% if user_signed_in? %>
+      <div>
+        <% if current_user != @user %>
+          <div id="follow_form">
+            <% if current_user.following?(@user) %>
+              <%= render partial: "unfollow" %>
+            <% else %>
+              <%= render partial: "follow" %>
+            <% end %>
           </div>
         <% end %>
-      <% end %>
+      </div>
+    <% end %>
 
+    <div class="col-md-3">
+      <h3><%= @user.username %></h3>
+      <div><%= @following %> <%= link_to "Following", following_user_path(@user) %></div>
+      <span id="followers"><%= @user.followers.count %></span> <span><%= link_to "Followers", followers_user_path(@user) %></span>
+    </div>
+    <div class="col-md-6">
+      <%= render partial: "owntweets" %>
+    </div>
+    <div class="col-md-6 col-md-offset-3">
+      <%= render partial: "favourite" %>
     </div>
 
   </div>

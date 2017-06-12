@@ -7,7 +7,7 @@ User.find_or_create_by(username: "administrator") do |user|
 end
 
 # Users - Random users
-user_count = 10
+user_count = 80
 if User.count < user_count
   (user_count - User.count).times do
     username = Faker::Pokemon.name
@@ -30,3 +30,11 @@ if Tweet.count < tweet_count + 1
     Tweet.create(body: body, user_id: user_id, reply_id: reply_id)
   end
 end
+
+# Following relationships
+users = User.all
+user  = users.first
+following = users[2..50]
+followers = users[3..40]
+following.each { |followed| user.follow(followed) }
+followers.each { |follower| follower.follow(user) }
