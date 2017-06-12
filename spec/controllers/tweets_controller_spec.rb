@@ -27,6 +27,22 @@ RSpec.describe TweetsController, type: :controller do
     it {expect(response).to redirect_to root_path(params: {reply_id: 1, body: "@" + user2.username + " "})}
   end
 
+  describe 'GET #search' do
+    let(:tweet) { create(:tweet, body: "hello") }
+
+    before do
+      get :search, params: { search: params }
+    end
+
+    context 'keyword found' do
+      it {expect(response).to have_http_status(:ok)}
+    end
+
+    context 'keyword not found' do
+
+    end
+  end
+
   describe 'GET #show' do
     let(:user) { create(:user) }
 
