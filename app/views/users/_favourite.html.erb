@@ -1,5 +1,5 @@
 <h3>Favourite Tweets (<%= @likes_count %>)</h3>
-<% if@likes_count > 0 %>
+<% if @likes_count > 0 %>
   <% @likes.reverse_each do |like| %>      
     <% tweet = Tweet.find(like.tweet_id) %>
     <% if tweet.user_id != @user.id %>

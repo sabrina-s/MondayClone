@@ -6,16 +6,20 @@ Rails.application.routes.draw do
   get 'reply', to: 'tweets#reply'
 
   resources :users do
-    resources :displaypic
+    member do
+      resource :displaypic
+      get :following, :followers
+    end
     # , only: [:show, :new, :create] do
     #   member do
     #     patch :set_as_primary
     #   end
-    # end
+    # end    
   end
 
+  resources :relationships, only: [:create, :destroy]
   resources :tweets
-  resources :likes
+  resources :likes, only: [:create, :destroy]
   # , only: [:show] do
   #   resource :picture, only: [:show, :new, :create]
   # end
