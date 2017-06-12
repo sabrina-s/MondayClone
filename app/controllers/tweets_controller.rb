@@ -9,6 +9,12 @@ class TweetsController < ApplicationController
   def home
     @tweet = current_user.tweets.build(new_tweet_params)
     @tweets = Tweet.all
+
+    if params[:search]
+      @tweets = Tweet.search(params[:search])
+    else
+      @tweets = Tweet.all
+    end
   end
 
   def show

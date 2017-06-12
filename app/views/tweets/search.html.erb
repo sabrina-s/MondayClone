@@ -1,0 +1,9 @@
+<h1>Search results:</h1>
+
+<% @tweets.each do |tweet| %>
+  <table>
+    <tr>
+      <td><%= tweet.body %></td>
+    </tr>
+  </table>
+<% end %>
