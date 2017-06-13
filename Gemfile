@@ -35,12 +35,10 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise'
 gem 'faker', '~> 1.6', '>= 1.6.3'
 gem 'bootstrap-sass', '~> 3.3.6'
-gem 'simple_form'
 # A gem to automate using jQuery with Rails
 gem 'jquery-rails'
-gem 'carrierwave'
-gem 'mini_magick'
-
+# Classier solution for file uploads for Rails, Sinatra and other Ruby web frameworks
+gem 'carrierwave', '~> 1.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
