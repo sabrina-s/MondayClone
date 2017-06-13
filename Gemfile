@@ -38,6 +38,8 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'simple_form'
 # A gem to automate using jQuery with Rails
 gem 'jquery-rails'
+gem 'carrierwave'
+gem 'mini_magick'
 
 
 group :development, :test do
