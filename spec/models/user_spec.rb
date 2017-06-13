@@ -15,4 +15,12 @@ RSpec.describe User, type: :model do
     let(:user) { create(:user) }
     it { should validate_uniqueness_of(:username).ignoring_case_sensitivity}
   end
+
+  describe 'validates a method to check whether current user is following the other user' do
+    let(:user1) { create(:user) }
+    let(:user2) { create(:user) }
+    let!(:relationship) { create(:relationship, follower: user1, followed: user2)}
+
+    it { expect(user1.following?(user2)).to eq(true) }
+  end
 end

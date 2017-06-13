@@ -16,8 +16,6 @@ class TweetsController < ApplicationController
 
     if params[:search]
       @tweets = Tweet.search(params[:search])
-    else
-      @tweets = Tweet.all
     end
   end
 
