@@ -17,7 +17,7 @@ What things you need get started
 
 ## Running the tests
 
-We are using [RSpec](http://rspec.info/) with [Shoulda Matchers gem] (https://github.com/thoughtbot/shoulda-matchers)  
+We are using [RSpec](http://rspec.info/) with [Shoulda Matchers gem](https://github.com/thoughtbot/shoulda-matchers) and [factory_girl](https://github.com/thoughtbot/factory_girl)
 
 ### And coding style tests
 
