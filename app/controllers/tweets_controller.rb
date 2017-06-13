@@ -47,11 +47,11 @@ class TweetsController < ApplicationController
 
   private
   def tweet_params
-    params.require(:tweet).permit(:body, :reply_id)
+    params.require(:tweet).permit(:body, :reply_id, :image)
   end
 
   def new_tweet_params
-    params.permit(:body, :reply_id)
+    params.permit(:body, :reply_id, :image)
   end
 
   def reply_params

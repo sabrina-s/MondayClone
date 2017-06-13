@@ -5,6 +5,9 @@
       </div>
       <div class="panel-body">
         <%= tweet.body %>
+        <% if tweet.image? %>
+          <%= image_tag tweet.image.url %>
+        <% end %>
         <% if Like.find_by(tweet_id: tweet.id, user_id: current_user) != nil %>
           <%# tweet.likes[0].likes_count %>
           <%= link_to like_path(id: tweet, path: "tweet"), method: :delete do %>
