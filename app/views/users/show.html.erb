@@ -1,32 +1,37 @@
 <div class="container">
-
   <div class="row">
-    <% if user_signed_in? %>
-      <div>
-        <% if current_user != @user %>
-          <div id="follow_form">
-            <% if current_user.following?(@user) %>
-              <%= render partial: "unfollow" %>
-            <% else %>
-              <%= render partial: "follow" %>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
-
     <div class="col-md-3">
       <h3><%= @user.username %></h3>
+      <% if @user.avatar? %>
+        <%= image_tag @user.avatar.url, size: "100x100",class: "img-circle" %>
+      <% else %>
+        <%= image_tag "starfish.png", size: "100x100",class: "img-circle" %>
+      <% end %>
       <div><%= @following %> <%= link_to "Following", following_user_path(@user) %></div>
-      <span id="followers"><%= @user.followers.count %></span> <span><%= link_to "Followers", followers_user_path(@user) %></span>
+      <span id="followers"><%= @user.followers.count %></span> 
+      <span><%= link_to "Followers", followers_user_path(@user) %></span>
+      <% if user_signed_in? %>
+        <div>
+          <% if current_user != @user %>
+            <div id="follow_form">
+              <% if current_user.following?(@user) %>
+                <%= render partial: "unfollow" %>
+              <% else %>
+                <%= render partial: "follow" %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
     </div>
     <div class="col-md-6">
       <%= render partial: "owntweets" %>
     </div>
+  </div>
+  <div class="row">
     <div class="col-md-6 col-md-offset-3">
       <%= render partial: "favourite" %>
     </div>
-
   </div>
-
+  
 </div>
