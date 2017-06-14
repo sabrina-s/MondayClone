@@ -33,7 +33,7 @@ For the versions available, see the [tags on this repository](https://github.com
 
 ## Authors
 
-[**Sabrina**](https://github.com/sabrina-s), [**Hwee Lern**](https://github.com/lerhhl), **Evan**(https://github.com/wlteo)
+[**Sabrina**](https://github.com/sabrina-s), [**Hwee Lern**](https://github.com/lerhhl), [**Evan**](https://github.com/wlteo)
 
 ## License
 
