@@ -2,6 +2,7 @@ if("<%= @tweet.id %>") {
   $(".tweets").html("<%= j render partial: 'tweets' %>");
   $("#tweetbox").find("textarea").val("");
   $("#tweetbox").find("#tweet_reply_id").val("");
+  $('.countdown').text('140 characters remaining.');
 } else {
   $("tweetbox").html("<%= j render partial: 'tweetbox' %>")
 }
