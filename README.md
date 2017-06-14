@@ -17,7 +17,7 @@ What things you need get started
 
 ## Running the tests
 
-We are using [RSpec](http://rspec.info/) with [Shoulda Matchers gem] (https://github.com/thoughtbot/shoulda-matchers)  
+We are using [RSpec](http://rspec.info/) with [Shoulda Matchers gem](https://github.com/thoughtbot/shoulda-matchers) and [factory_girl](https://github.com/thoughtbot/factory_girl)
 
 ### And coding style tests
 
@@ -33,7 +33,7 @@ For the versions available, see the [tags on this repository](https://github.com
 
 ## Authors
 
-**Sabrina**, **Mark**, **Evan**
+[**Sabrina**](https://github.com/sabrina-s), [**Hwee Lern**](https://github.com/lerhhl), **Evan**(https://github.com/wlteo)
 
 ## License
 
@@ -42,5 +42,3 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 ## Acknowledgments
 
 * Hat tip to anyone whose code was used
-* Inspiration
-* etc
