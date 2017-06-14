@@ -1,6 +1,9 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-  <h3><%= @tweet.body %></h3><br>
+  <h3><%= @tweet.body %>
+    <% if @tweet.image? %>
+      <%= image_tag @tweet.image.url, class: "home-tweet" %>
+    <% end %></h3><br>
   <% if @tweet_replies.count > 0 %>
     <h4>Replies (<%= @tweet_replies.count %>)</h4>
       <% @tweet_replies.each do |reply| %>
@@ -10,6 +13,9 @@
           </div>
           <div class="panel-body">
             <%= reply.body %>
+            <% if reply.image? %>
+            <%= image_tag reply.image.url, class: "home-tweet" %>
+            <% end %>
           </div>
           <div class="panel-footer">
             <% if current_user == reply.user %>
