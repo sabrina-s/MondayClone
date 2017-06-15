@@ -5,7 +5,7 @@
     <% else %>
       <%= image_tag "starfish.png", size: "25x25",class: "img-circle" %>
     <% end %>
-    <%= link_to "@"+tweet.user.username, user_path(tweet.user), class: "panel-title" %>
+    <%= link_to "@"+tweet.user.username, user_path(tweet.user.username), class: "panel-title" %>
   </div>
 
   <div class="panel-body">

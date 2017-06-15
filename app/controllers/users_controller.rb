@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   # User needs to login before doing the following actions
   before_action :authenticate_user!
-  
+
   before_action :set_user
   # def index
   #   @users = User.all
@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   def show
     @tweets = @user.tweets
     @tweets_count = @tweets.count
-    
+
     @likes = @user.likes
     @likes_count = @likes.count
     @likes.each do |like|
@@ -38,6 +38,6 @@ class UsersController < ApplicationController
   private
 
   def set_user
-    @user = User.find(params[:id])
+    @user = User.find_by(username: params[:username])
   end
 end

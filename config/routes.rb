@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
-  
+
   root 'tweets#home'
   get 'reply', to: 'tweets#reply'
 
-  resources :users do
+  resources :users, param: :username do
     member do
       resource :displaypic
       get :following, :followers
@@ -13,9 +13,9 @@ Rails.application.routes.draw do
     #   member do
     #     patch :set_as_primary
     #   end
-    # end    
+    # end
   end
-  
+
   resources :relationships, only: [:create, :destroy]
   resources :likes, only: [:create, :destroy]
   resources :tweets do
