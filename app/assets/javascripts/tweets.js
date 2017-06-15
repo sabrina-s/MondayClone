@@ -1,6 +1,6 @@
 function updateCountdown() {
   var remaining = 140 - $('#tweetbox').find("textarea").val().length;
-  $('.countdown').text(remaining + ' characters remaining.');
+  $('.countdown').text(remaining + ' characters remaining');
 };
 
 function button() {
