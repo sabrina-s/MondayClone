@@ -22,7 +22,7 @@
               <% else %>
                 <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
                 <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
-                <li class="navbar-text", style="text-align: right">Logged in as: <span><%= link_to current_user.username, user_path(current_user) %></span></li>
+                <li class="navbar-text", style="text-align: right">Logged in as: <span><%= link_to current_user.username, user_path(current_user.username) %></span></li>
               <% end %>
               <%= render partial: 'searchbar' %>
             </ul>
