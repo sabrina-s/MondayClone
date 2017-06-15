@@ -10,7 +10,7 @@ class LikesController < ApplicationController
     if params[:path] == "tweet"
       redirect_to root_path
     elsif params[:path] == "user"
-      redirect_to user_path(current_user.id)
+      redirect_to user_path(current_user.username)
     end
   end
 
@@ -20,7 +20,7 @@ class LikesController < ApplicationController
     if params[:path] == "tweet"
       redirect_to root_path
     elsif params[:path] == "user"
-      redirect_to user_path(current_user.id)
+      redirect_to user_path(current_user.username)
     end  
   end
   
