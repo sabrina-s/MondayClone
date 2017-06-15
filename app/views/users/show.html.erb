@@ -2,6 +2,7 @@
   <div class="row">
 
     <div class="col-md-3">
+<<<<<<< HEAD
       <div class="row">
         <div class="col-xs-6">
           <h3><%= @user.username %></h3>
@@ -37,6 +38,25 @@
                     <% end %>
                   </div>
                 <% end %>
+=======
+      <h3><%= @user.username %></h3>
+      <% if @user.avatar? %>
+        <%= image_tag @user.avatar.url, size: "100x100",class: "img-circle" %>
+      <% else %>
+        <%= image_tag "starfish.png", size: "100x100",class: "img-circle" %>
+      <% end %>
+      <div><%= @following %> <%= link_to "Following", following_user_path(@user.username) %></div>
+      <span id="followers"><%= @user.followers.count %></span>
+      <span><%= link_to "Followers", followers_user_path(@user.username) %></span>
+      <% if user_signed_in? %>
+        <div>
+          <% if current_user != @user %>
+            <div id="follow_form">
+              <% if current_user.following?(@user) %>
+                <%= render partial: "unfollow" %>
+              <% else %>
+                <%= render partial: "follow" %>
+>>>>>>> master
               <% end %>
             </div>
           </div>
@@ -55,5 +75,5 @@
       <%= render partial: "favourite" %>
     </div>
   </div>
-  
+
 </div>

@@ -5,10 +5,13 @@
     <% else %>
       <%= image_tag "starfish.png", size: "25x25",class: "img-circle" %>
     <% end %>
-    <%= link_to "@"+tweet.user.username, user_path(tweet.user), class: "panel-title" %>
+    <%= link_to "@"+tweet.user.username, user_path(tweet.user.username), class: "panel-title" %>
   </div>
   <div class="panel-body">
     <%= tweet.body %>
+    <% if tweet.image? %>
+      <%= image_tag tweet.image.url, class: "home-tweet" %>
+    <% end %>
     <% if Like.find_by(tweet_id: tweet.id, user_id: current_user) != nil %>
       <%= link_to like_path(id: tweet, path: "user"), method: :delete do %>
         <span class="glyphicon glyphicon-heart pull-right"></span>

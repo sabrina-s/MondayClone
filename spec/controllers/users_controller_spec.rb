@@ -9,7 +9,7 @@ RSpec.describe UsersController, type: :controller do
 
       before do
         sign_in user
-        get :show, params: {id: user}
+        get :show, params: { username: user.username }
       end
 
       it { expect(assigns(:user)). to eq(user) }
@@ -22,9 +22,9 @@ RSpec.describe UsersController, type: :controller do
 
       before do
         sign_in user
-        get :show, params: {id:user}
+        get :show, params: { username: user.username }
       end
-      
+
       it { expect(assigns(:tweets)). to eq(tweets) }
       it { expect(assigns(:tweets_count)). to eq(tweets_count) }
     end
@@ -45,14 +45,65 @@ RSpec.describe UsersController, type: :controller do
 
       before do
         sign_in user
-        get :show, params: {id:user}
+        get :show, params: {username: user.username }
       end
-      
+
       it { expect(assigns(:likes)). to eq(likes) }
-      it { expect(assigns(:likes_count)). to eq(likes_count) }      
+      it { expect(assigns(:likes_count)).to eq(likes_count) }
     end
 
+    context 'Count the number of followed' do
+      let(:user1) { create(:user) }
+      let(:user2) { create(:user) }
+      let(:user3) { create(:user) }
+      let(:following1) { create(:relationship, follower: user1, followed: user2) }
+      let(:following2) { create(:relationship, follower: user1, followed: user3) }
+      let(:following) { [following1] + [following2] }
+      let!(:following_count) { following.count }
 
+      before do
+        sign_in user1
+        get :show, params: { username: user1.username }
+      end
 
+      it { expect(assigns(:following)).to eq(following_count) }
+    end
   end
+
+  describe 'GET the list of following of a user' do
+    let(:user1) { create(:user) }
+    let(:user2) { create(:user) }
+    let(:user3) { create(:user) }
+    let(:following1) { create(:relationship, follower: user1, followed: user2) }
+    let(:following2) { create(:relationship, follower: user1, followed: user3) }
+    let!(:following) { [following1.followed] + [following2.followed] }
+
+    before do
+      sign_in user1
+      get :following, params: { username: user1.username }
+    end
+
+    it { expect(assigns(:title)).to eq("Following") }
+    it { expect(assigns(:users)).to eq(following) }
+    it { expect(response).to render_template(:show_follow) }
+  end
+
+  describe 'GET the list of followers of a user' do
+    let(:user1) { create(:user) }
+    let(:user2) { create(:user) }
+    let(:user3) { create(:user) }
+    let(:follower1) { create(:relationship, follower: user3, followed: user1) }
+    let(:follower2) { create(:relationship, follower: user2, followed: user1) }
+    let(:followers) { [follower1.follower] + [follower2.follower] }
+
+    before do
+      sign_in user1
+      get :followers, params: { username: user1.username }
+    end
+
+    it { expect(assigns(:title)).to eq("Followers") }
+    it { expect(assigns(:users)).to eq(followers) }
+    it { expect(response).to render_template(:show_follow) }
+  end
+
 end

@@ -24,7 +24,7 @@ RSpec.describe TweetsController, type: :controller do
       get :reply, params: {reply_to_tweet_id: 1, reply_to_user_id: user2}
     end
 
-    it {expect(response).to redirect_to root_path(params: {reply_id: 1, body: "@" + user2.username + " "})}
+    it { expect(response).to redirect_to root_path(params: {reply_id: 1, body: "@" + user2.username + " "}) }
   end
 
   describe 'GET #search' do
@@ -36,7 +36,7 @@ RSpec.describe TweetsController, type: :controller do
     end
 
     context 'keyword found' do
-      it {expect(response).to have_http_status(:ok)}
+      it { expect(response).to have_http_status(:ok) }
     end
   end
 
@@ -76,7 +76,7 @@ RSpec.describe TweetsController, type: :controller do
       get :reply, params: {reply_to_tweet_id: 1, reply_to_user_id: user2}
     end
 
-    it {expect(response).to redirect_to root_path(params: {reply_id: 1, body: "@" + user2.username + " "})}
+    it { expect(response).to redirect_to root_path(params: {reply_id: 1, body: "@" + user2.username + " "}) }
   end
 
   describe 'POST #create' do
@@ -89,12 +89,12 @@ RSpec.describe TweetsController, type: :controller do
 
     context 'when tweet#save passes' do
       let(:params) { attributes_for(:tweet) }
-      it {expect(response).to render_template(:create)}
+      it { expect(response).to render_template(:create) }
     end
 
     context 'when tweet#save fails' do
       let(:params) {attributes_for(:tweet, :invalid)}
-      it {expect(response).to render_template(:create)}
+      it { expect(response).to render_template(:create) }
     end
   end
 

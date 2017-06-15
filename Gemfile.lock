@@ -222,7 +222,7 @@ PLATFORMS
 DEPENDENCIES
   bootstrap-sass (~> 3.3.6)
   byebug
-  carrierwave (~> 1.0)
+  carrierwave (~> 1.1.0)
   coffee-rails (~> 4.2)
   devise
   dotenv-rails

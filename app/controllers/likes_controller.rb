@@ -26,10 +26,6 @@ class LikesController < ApplicationController
   
   private
 
-  def tweet_id
-    params.permit(:id)
-  end
-
   def set_tweet
     @tweet = Tweet.find(params[:id])
   end
