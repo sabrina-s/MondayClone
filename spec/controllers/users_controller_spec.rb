@@ -9,7 +9,7 @@ RSpec.describe UsersController, type: :controller do
 
       before do
         sign_in user
-        get :show, params: {id: user}
+        get :show, params: { username: user.username }
       end
 
       it { expect(assigns(:user)). to eq(user) }
@@ -22,9 +22,9 @@ RSpec.describe UsersController, type: :controller do
 
       before do
         sign_in user
-        get :show, params: {id:user}
+        get :show, params: { username: user.username }
       end
-      
+
       it { expect(assigns(:tweets)). to eq(tweets) }
       it { expect(assigns(:tweets_count)). to eq(tweets_count) }
     end
@@ -45,11 +45,11 @@ RSpec.describe UsersController, type: :controller do
 
       before do
         sign_in user
-        get :show, params: {id:user}
+        get :show, params: {username: user.username }
       end
-      
+
       it { expect(assigns(:likes)). to eq(likes) }
-      it { expect(assigns(:likes_count)).to eq(likes_count) }      
+      it { expect(assigns(:likes_count)).to eq(likes_count) }
     end
 
     context 'Count the number of followed' do
@@ -63,7 +63,7 @@ RSpec.describe UsersController, type: :controller do
 
       before do
         sign_in user1
-        get :show, params: {id:user1}
+        get :show, params: { username: user1.username }
       end
 
       it { expect(assigns(:following)).to eq(following_count) }
@@ -80,7 +80,7 @@ RSpec.describe UsersController, type: :controller do
 
     before do
       sign_in user1
-      get :following, params: {id: user1}
+      get :following, params: { username: user1.username }
     end
 
     it { expect(assigns(:title)).to eq("Following") }
@@ -98,9 +98,9 @@ RSpec.describe UsersController, type: :controller do
 
     before do
       sign_in user1
-      get :followers, params: {id: user1}
+      get :followers, params: { username: user1.username }
     end
-    
+
     it { expect(assigns(:title)).to eq("Followers") }
     it { expect(assigns(:users)).to eq(followers) }
     it { expect(response).to render_template(:show_follow) }
