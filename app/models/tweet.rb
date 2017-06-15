@@ -3,6 +3,7 @@ class Tweet < ApplicationRecord
 
   belongs_to :user
   has_many :likes, dependent: :destroy
+  has_and_belongs_to_many :tags
 
   max_body_length = 140
 
