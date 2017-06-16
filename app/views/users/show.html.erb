@@ -15,13 +15,13 @@
           <!-- Following count-->
           <div class="row">
             <div class="col-xs-12 following-count">
-            <%= @following %> <%= link_to "Following", following_user_path(@user) %>
+            <%= @following %> <%= link_to "Following", following_user_path(@user.username) %>
             </div>
           </div>
           <!-- Followers count -->
           <div class="row">
             <div class="col-xs-12 following-count">
-            <span id="followers"><%= @user.followers.count %></span> <%= link_to "Followers", followers_user_path(@user) %>
+            <span id="followers"><%= @user.followers.count %></span> <%= link_to "Followers", followers_user_path(@user.username) %>
             </div>
           </div>
           <!-- Follow button -->
