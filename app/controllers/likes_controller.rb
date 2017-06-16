@@ -7,21 +7,13 @@ class LikesController < ApplicationController
   def create
     @like = current_user.likes.build(tweet_id: @tweet.id)
     @like.save
-    if params[:path] == "tweet"
-      redirect_to root_path
-    elsif params[:path] == "user"
-      redirect_to user_path(current_user.username)
-    end
+    redirect_back(fallback_location: root_path)
   end
 
   def destroy
     @like = Like.find_by(tweet_id: @tweet.id, user_id: current_user.id)
     @like.delete
-    if params[:path] == "tweet"
-      redirect_to root_path
-    elsif params[:path] == "user"
-      redirect_to user_path(current_user.username)
-    end  
+    redirect_back(fallback_location: root_path)
   end
   
   private
