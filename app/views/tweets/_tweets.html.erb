@@ -17,9 +17,6 @@
             <% tweet.tags.map(&:body).each do |hashtag| %>
             <span class="hashtag label label-warning"><%=link_to hashtag, search_tweets_path(:search => "#"+hashtag) %></span>
             <% end %>
-            <% if tweet.image? %>
-              <%= image_tag tweet.image.url, class: "home-tweet" %>
-            <% end %>
           </div>
         </div>
 
@@ -45,7 +42,16 @@
           </div>
         </div>
       </div>
-
+      
+        <% if tweet.image? %>
+          <div>
+            <button type="button" class="btn btn-link btn-block center-block" data-toggle="collapse" data-target="#tweet-image">Show Image</button>
+          </div>
+          <div id="tweet-image" class="collapse">
+            <%= image_tag tweet.image.url, class: "home-tweet" %>
+          </div>
+        <% end %>
+      
       <div class="panel-footer">
         <% if current_user == tweet.user %>
           <%= link_to "Delete", tweet_path(tweet), method: :delete %>

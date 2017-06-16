@@ -1,10 +1,8 @@
 class TweetsController < ApplicationController
-
   # Find params before the following actions
   before_action :set_tweet, only: [:show, :destroy]
-
   # User needs to login before doing the following actions
-  before_action :authenticate_user!, only: [:home, :show, :create, :destroy]
+  before_action :authenticate_user!
 
   def home
     @tweet = current_user.tweets.build(new_tweet_params)
