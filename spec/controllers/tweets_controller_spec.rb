@@ -36,7 +36,7 @@ RSpec.describe TweetsController, type: :controller do
     end
 
     context 'keyword found' do
-      it { expect(response).to have_http_status(:ok) }
+      it { expect(response).to have_http_status(:found) }
     end
   end
 
