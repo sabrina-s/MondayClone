@@ -1,10 +1,8 @@
 class TweetsController < ApplicationController
-
   # Find params before the following actions
   before_action :set_tweet, only: [:show, :destroy]
-
   # User needs to login before doing the following actions
-  before_action :authenticate_user!, only: [:home, :show, :create, :destroy]
+  before_action :authenticate_user!
 
   def home
     @tweet = current_user.tweets.build(new_tweet_params)
@@ -33,6 +31,7 @@ class TweetsController < ApplicationController
 
     respond_to do |format|
       if @tweet.save
+        Tweet.save_hashtag(@tweet)
         format.js
       else
         format.js
@@ -46,6 +45,8 @@ class TweetsController < ApplicationController
   end
 
   private
+
+
   def tweet_params
     params.require(:tweet).permit(:body, :reply_id, :image)
   end

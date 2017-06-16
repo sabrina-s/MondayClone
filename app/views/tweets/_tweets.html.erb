@@ -13,6 +13,10 @@
         <div class="row">
           <div class="col-xs-12">
             <%= tweet.body %>
+            <br>
+            <% tweet.tags.map(&:body).each do |hashtag| %>
+            <span class="hashtag label label-warning"><%=link_to hashtag, search_tweets_path(:search => "#"+hashtag) %></span>
+            <% end %>
           </div>
         </div>
 
@@ -47,7 +51,6 @@
             <%= image_tag tweet.image.url, class: "home-tweet" %>
           </div>
         <% end %>
-   
       
       <div class="panel-footer">
         <% if current_user == tweet.user %>

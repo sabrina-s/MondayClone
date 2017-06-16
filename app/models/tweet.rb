@@ -3,6 +3,7 @@ class Tweet < ApplicationRecord
 
   belongs_to :user
   has_many :likes, dependent: :destroy
+  has_and_belongs_to_many :tags, :uniq => true
 
   max_body_length = 140
 
@@ -12,4 +13,12 @@ class Tweet < ApplicationRecord
   def self.search(search)
     where("body ILIKE ?", "%#{search}%")
   end
+
+  def self.save_hashtag(tweet)
+    body = tweet.body
+    body.scan(/(?<=\s|^)#(\w*[A-Za-z_]+\w*)/).flatten.each do |tag|
+      tweet.tags.create(body: tag.downcase)
+    end
+  end
+  
 end
