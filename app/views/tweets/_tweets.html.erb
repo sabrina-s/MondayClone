@@ -8,26 +8,44 @@
         <% end %>
         <%= link_to "@"+tweet.user.username, user_path(tweet.user.username), class: "panel-title" %>
       </div>
+
       <div class="panel-body">
-        <%= tweet.body %>
-        <% if tweet.image? %>
-          <%= image_tag tweet.image.url, class: "home-tweet" %>
-        <% end %>
-        <% if Like.find_by(tweet_id: tweet.id, user_id: current_user) != nil %>
-          <%# tweet.likes[0].likes_count %>
-          <%= link_to like_path(id: tweet, path: "tweet"), method: :delete do %>
-            <span class="glyphicon glyphicon-heart pull-right"></span>
-          <% end %>
-        <% else %>
-          <%= link_to likes_path(id: tweet, path: "tweet"), method: :post do %>
-            <span class="glyphicon glyphicon-heart-empty pull-right"></span>
-          <% end %>
-        <% end %>
-        <br><br>
-          <% tweet.tags.map(&:body).each do |hashtag| %>
+        <div class="row">
+          <div class="col-xs-12">
+            <%= tweet.body %>
+            <br>
+            <% tweet.tags.map(&:body).each do |hashtag| %>
             <span class="hashtag label label-warning"><%=link_to hashtag, search_tweets_path(:search => "#"+hashtag) %></span>
-          <% end %>
+            <% end %>
+            <% if tweet.image? %>
+              <%= image_tag tweet.image.url, class: "home-tweet" %>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="like pull-right">
+              <% if Like.find_by(tweet_id: tweet.id, user_id: current_user) != nil %>
+                <%= link_to like_path(id: tweet, path: "tweet"), method: :delete do %>
+                  <span class="glyphicon glyphicon-heart"></span>
+                <% end %>
+              <% else %>
+                <%= link_to likes_path(id: tweet, path: "tweet"), method: :post do %>
+                  <span class="glyphicon glyphicon-heart-empty"></span>
+                <% end %>
+              <% end %>
+
+              <% if tweet.likes.count > 0 %>
+                 <span class="h6"><%= tweet.likes.count %></span>
+              <% else %>
+                 &nbsp;
+              <% end %>
+            </div>
+          </div>
+        </div>
       </div>
+
       <div class="panel-footer">
         <% if current_user == tweet.user %>
           <%= link_to "Delete", tweet_path(tweet), method: :delete %>

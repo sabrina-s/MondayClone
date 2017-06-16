@@ -22,7 +22,7 @@ RSpec.describe LikesController, type: :controller do
         post :create, params: { id: tweet, path: "user" }
       end
 
-      it { expect(response).to redirect_to user_path(user.id) }    
+      it { expect(response).to redirect_to user_path(user.username) }    
     end
 
   end
@@ -47,7 +47,7 @@ RSpec.describe LikesController, type: :controller do
         delete :destroy, params: { id: tweet, path: "user" }
       end
 
-      it { expect(response).to redirect_to user_path(user.id) }    
+      it { expect(response).to redirect_to user_path(user.username) }    
     end
   end
   
